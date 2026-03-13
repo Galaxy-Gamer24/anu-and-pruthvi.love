@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Anu's 18th Birthday ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff7fa5,#ff9db7);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+section{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+button{
+padding:12px 28px;
+font-size:16px;
+border:none;
+border-radius:25px;
+background:white;
+color:#ff4f81;
+cursor:pointer;
+margin-top:25px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* slideshow */
+
+.slideshow{
+width:720px;
+height:400px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.slideshow img{
+max-width:100%;
+max-height:100%;
+border-radius:15px;
+box-shadow:0 15px 30px rgba(0,0,0,0.5);
+transition:opacity 0.6s;
+}
+
+.message{
+max-width:720px;
+line-height:1.7;
+font-size:18px;
+}
+
+/* cake */
+
+.cake{
+font-size:100px;
+cursor:pointer;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:scale(1)}
+to{transform:scale(1.1)}
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+/* final page */
+
+#finalPage{
+background:black;
+position:relative;
+overflow:hidden;
+}
+
+/* galaxy particles */
+
+.particle{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:moveParticle linear infinite;
+}
+
+@keyframes moveParticle{
+0%{
+transform:translateY(0);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* glowing text */
+
+.glow{
+font-size:70px;
+color:#ff8ac6;
+text-shadow:
+0 0 10px #ff4f81,
+0 0 20px #ff4f81,
+0 0 40px #ff4f81,
+0 0 80px #ff4f81;
+animation:glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse{
+from{transform:scale(1)}
+to{transform:scale(1.05)}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music1" loop>
+<source src="music1.mp3">
+</audio>
+
+<audio id="music2" loop>
+<source src="music2.mp3">
+</audio>
+
+<section id="start">
+<h1>Happy 18th Birthday Anu ❤️</h1>
+<h3>From Chintu</h3>
+<button onclick="openSlideshow()">Open Your Surprise</button>
+</section>
+
+<section id="slideshowPage" style="display:none">
+<h1>18 Years of Her, 11 Months of Us 💘</h1>
+
+<div class="slideshow">
+<img id="slide">
+</div>
+
+</section>
+
+<section id="cakePage" style="display:none">
+<h1>Make A Birthday Wish</h1>
+<div class="cake" onclick="showMessage()">🎂</div>
+<p>Tap the cake</p>
+</section>
+
+<section id="messagePage" style="display:none">
+
+<h1>To My Love, Anu</h1>
+
+<div class="message">
+
+<b>Happy 18th Birthday my wifey 💝 </b><br><br>
+
+Today is such a special day because the most beautiful soul came into this world.
+
+<br><br>
+
+This 11 months with you has been the happiest chapter of my life.
+
+You became my best friend, my comfort, and my peace.
+
+<br><br>
+
+Your smile, your voice, and every little thing about you makes me fall in love with you more every day. I'm forever grateful that someone as caring and beautiful as you chose to be my girlfriend, babe and my wife 💓❤️
+
+<br><br>
+
+Thank you for being the most beautiful part of my life.
+
+<br><br>
+
+<b>I love you forever my darling 💞💓</b><br>
+– Chintu
+
+</div>
+
+<button onclick="showClosure()">One Last Thing ❤️</button>
+
+</section>
+
+<section id="closurePage" style="display:none">
+
+<h1>Just One More Thing...</h1>
+
+<div class="message">
+
+Never forget this my honey, you're the most beautiful, gorgeous and hottest one ❤️‍🔥😚. You are the best!!! 😘😘
+
+<br><br>
+
+<b>I love you now and forever my Anushka 😘💕</b>
+
+</div>
+
+<button onclick="finalPage()">Final Surprise ❤️</button>
+
+</section>
+
+<section id="finalPage" style="display:none">
+
+<h1 class="glow">Happy Birthday again Mrs. Pruthvi ❤️</h1>
+<p style="font-size:22px;"> It's JUST YOU with me Forever and Always my Babe 😚💕 </p>
+
+</section>
+
+<script>
+
+/* slideshow */
+
+let photos=[
+"1.png",
+"2.png",
+"3.png",
+"4.png",
+"5.png",
+"6.png",
+"7.png"
+]
+
+let index=0
+let slideshowStarted=false
+
+let img=document.getElementById("slide")
+
+function openSlideshow(){
+
+if(slideshowStarted) return
+slideshowStarted=true
+
+document.getElementById("start").style.display="none"
+document.getElementById("slideshowPage").style.display="flex"
+
+document.getElementById("music1").play()
+
+img.src=photos[0]
+
+setTimeout(nextPhoto,3000)
+
+}
+
+function nextPhoto(){
+
+index++
+
+if(index < photos.length){
+
+img.style.opacity=0
+
+setTimeout(()=>{
+img.src=photos[index]
+img.style.opacity=1
+},400)
+
+setTimeout(nextPhoto,3000)
+
+}
+
+else{
+
+document.getElementById("slideshowPage").style.display="none"
+document.getElementById("cakePage").style.display="flex"
+
+}
+
+}
+
+/* navigation */
+
+function showMessage(){
+
+document.getElementById("cakePage").style.display="none"
+document.getElementById("messagePage").style.display="flex"
+
+}
+
+function showClosure(){
+
+document.getElementById("messagePage").style.display="none"
+document.getElementById("closurePage").style.display="flex"
+
+}
+
+function finalPage(){
+
+document.getElementById("closurePage").style.display="none"
+document.getElementById("finalPage").style.display="flex"
+
+let music1=document.getElementById("music1")
+let music2=document.getElementById("music2")
+
+music1.pause()
+music2.play()
+
+heartExplosion()
+startGalaxy()
+
+}
+
+/* floating hearts */
+
+function createHeart(){
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(Math.random()*20+10)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{heart.remove()},6000)
+
+}
+
+setInterval(createHeart,700)
+
+/* heart explosion */
+
+function heartExplosion(){
+
+for(let i=0;i<150;i++){
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.bottom=Math.random()*20+"vh"
+heart.style.fontSize=(Math.random()*50+20)+"px"
+
+document.body.appendChild(heart)
+
+}
+
+}
+
+/* galaxy particles */
+
+function startGalaxy(){
+
+setInterval(()=>{
+
+let particle=document.createElement("div")
+particle.className="particle"
+
+particle.style.left=Math.random()*100+"vw"
+particle.style.animationDuration=(Math.random()*6+4)+"s"
+
+document.getElementById("finalPage").appendChild(particle)
+
+setTimeout(()=>{
+particle.remove()
+},10000)
+
+},120)
+
+}
+
+</script>
+
+</body>
+</html>
